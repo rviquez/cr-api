@@ -170,8 +170,8 @@ apiRoutes.get('/clan/search/:name', function (req, res) {
 
 // route to return clan battle information (GET http://localhost:8080/api/clan/battles/:id)
 apiRoutes.get('/clan/battles/:id/', function (req, res) {
-    var id = req.params.id;
-    var options = {
+    let id = req.params.id;
+    let options = {
         method: 'GET',
         url: config.apiUrl + 'clan/' + id + '/battles',
         headers: {
@@ -187,11 +187,12 @@ apiRoutes.get('/clan/battles/:id/', function (req, res) {
 });
 
 // route to return clan war information (GET http://localhost:8080/api/clan/war/:id)
-apiRoutes.get('/clan/war/:id/', function (req, res) {
-    var id = req.params.id;
-    var options = {
+apiRoutes.get('/clan/war/:id/:page', function (req, res) {
+    let id = req.params.id;
+    let page = req.params.page ? req.params.page:1;
+    let options = {
         method: 'GET',
-        url: config.apiUrl + 'clan/' + id + '/war',
+        url: config.apiUrl + 'clan/' + id + '/war?page='+page,
         headers: {
             auth: config.auth
         }
@@ -205,11 +206,12 @@ apiRoutes.get('/clan/war/:id/', function (req, res) {
 });
 
 // route to return clan war log information (GET http://localhost:8080/api/clan/warlog/:id)
-apiRoutes.get('/clan/warlog/:id/', function (req, res) {
-    var id = req.params.id;
-    var options = {
+apiRoutes.get('/clan/warlog/:id/:page', function (req, res) {
+    let id = req.params.id;
+    let page = req.params.page ? req.params.page : 1;
+    let options = {
         method: 'GET',
-        url: config.apiUrl + 'clan/' + id + '/warlog',
+        url: config.apiUrl + 'clan/' + id + '/warlog?page='+page,
         headers: {
             auth: config.auth
         }
@@ -224,8 +226,8 @@ apiRoutes.get('/clan/warlog/:id/', function (req, res) {
 
 // route to return player information (GET http://localhost:8080/api/player/:id)
 apiRoutes.get('/player/:id', function (req, res) {
-    var id = req.params.id;
-    var options = {
+    let id = req.params.id;
+    let options = {
         method: 'GET',
         url: config.apiUrl +'player/' + id,
         headers: {
@@ -242,8 +244,8 @@ apiRoutes.get('/player/:id', function (req, res) {
 
 // route to return player battle information (GET http://localhost:8080/api/player/:id/battles)
 apiRoutes.get('/player/:id/battles', function (req, res) {
-    var id = req.params.id;
-    var options = {
+    let id = req.params.id;
+    let options = {
         method: 'GET',
         url: config.apiUrl +'player/' + id + '/battles',
         headers: {
@@ -260,8 +262,8 @@ apiRoutes.get('/player/:id/battles', function (req, res) {
 
 // route to return player chests information (GET http://localhost:8080/api/player/:id/chests)
 apiRoutes.get('/player/:id/chests', function (req, res) {
-    var id = req.params.id;
-    var options = {
+    let id = req.params.id;
+    let options = {
         method: 'GET',
         url: config.apiUrl +'player/' + id + '/chests',
         headers: {
