@@ -6,7 +6,7 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Roberto Viquez",
+  "author": "Roberto Viquez[robertoviquez@gmail.com]",
   "license": "MIT",
   "dependencies": {
     "body-parser": "^1.18.3",
