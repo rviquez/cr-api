@@ -4,6 +4,7 @@
   "description": "crash royale api",
   "main": "server.js",
   "scripts": {
+    "start": "nodemon server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Roberto Viquez[robertoviquez@gmail.com]",
@@ -16,5 +17,8 @@
     "mongoose": "^5.2.0",
     "morgan": "^1.9.0",
     "request": "^2.87.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.3"
   }
 }

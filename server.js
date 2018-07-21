@@ -1,21 +1,20 @@
 // =======================
 // get the packages we need ============
 // =======================
-var express = require('express');
-var app = express();
-var bodyParser = require('body-parser');
-var morgan = require('morgan');
-var request = require("request");
-var cors = require('cors');
+const express = require('express');
+const app = express();
+const bodyParser = require('body-parser');
+const morgan = require('morgan');
+const request = require("request");
+const cors = require('cors');
 
-var jwt = require('jsonwebtoken'); // used to create, sign, and verify tokens
-var config = require('./config'); // get our config file
-var User = require('./app/models/user'); // get our mongoose model
+const config = require('./config'); // get our config file
+// var User = require('./app/models/user'); // get our mongoose model
 
 // =======================
 // configuration =========
 // =======================
-var port = process.env.PORT || 8080; // used to create, sign, and verify tokens
+let port = process.env.PORT || 8080; // used to create, sign, and verify tokens
 // mongoose.connect(config.database); // connect to database
 // app.set('superSecret', config.secret); // secret variable
 
@@ -40,7 +39,7 @@ app.get('/', function (req, res) {
 // API ROUTES -------------------
 
 // get an instance of the router for api routes
-var apiRoutes = express.Router();
+const apiRoutes = express.Router();
 
 // route to authenticate a user (POST http://localhost:8080/api/authenticate)
 // apiRoutes.post('/authenticate', function (req, res) {
@@ -133,12 +132,138 @@ apiRoutes.get('/', function (req, res) {
     });
 });
 
-// route to return all users (GET http://localhost:8080/api/users)
+// route to return all clan information by id (GET http://localhost:8080/api/clan/:id)
 apiRoutes.get('/clan/:id', function (req, res) {
+    let id = req.params.id;
+    let options = {
+        method: 'GET',
+        url: config.apiUrl+'clan/'+id,
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+
+// route to return clan information by name (GET http://localhost:8080/api/clan/:name)
+apiRoutes.get('/clan/search/:name', function (req, res) {
+    let name = req.params.name;
+    let options = {
+        method: 'GET',
+        url: config.apiUrl +'clan/search?name='+name,
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+
+// route to return clan battle information (GET http://localhost:8080/api/clan/battles/:id)
+apiRoutes.get('/clan/battles/:id/', function (req, res) {
     var id = req.params.id;
     var options = {
         method: 'GET',
-        url: 'https://api.royaleapi.com/clan/'+id,
+        url: config.apiUrl + 'clan/' + id + '/battles',
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+
+// route to return clan war information (GET http://localhost:8080/api/clan/war/:id)
+apiRoutes.get('/clan/war/:id/', function (req, res) {
+    var id = req.params.id;
+    var options = {
+        method: 'GET',
+        url: config.apiUrl + 'clan/' + id + '/war',
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+
+// route to return clan war log information (GET http://localhost:8080/api/clan/warlog/:id)
+apiRoutes.get('/clan/warlog/:id/', function (req, res) {
+    var id = req.params.id;
+    var options = {
+        method: 'GET',
+        url: config.apiUrl + 'clan/' + id + '/warlog',
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+
+// route to return player information (GET http://localhost:8080/api/player/:id)
+apiRoutes.get('/player/:id', function (req, res) {
+    var id = req.params.id;
+    var options = {
+        method: 'GET',
+        url: config.apiUrl +'player/' + id,
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+
+// route to return player battle information (GET http://localhost:8080/api/player/:id/battles)
+apiRoutes.get('/player/:id/battles', function (req, res) {
+    var id = req.params.id;
+    var options = {
+        method: 'GET',
+        url: config.apiUrl +'player/' + id + '/battles',
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+
+// route to return player chests information (GET http://localhost:8080/api/player/:id/chests)
+apiRoutes.get('/player/:id/chests', function (req, res) {
+    var id = req.params.id;
+    var options = {
+        method: 'GET',
+        url: config.apiUrl +'player/' + id + '/chests',
         headers: {
             auth: config.auth
         }
