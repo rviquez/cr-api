@@ -5,8 +5,9 @@
 /tmp
 /out-tsc
 
-# dependencies
-/node_modules
+# Node build artifacts
+node_modules
+npm-debug.log
 
 # IDEs and editors
 /.idea
@@ -37,3 +38,11 @@ testem.log
 # System Files
 .DS_Store
 Thumbs.db
+
+# Local development
+*.env
+*.dev
+
+# Docker
+Dockerfile
+docker-compose.yml
