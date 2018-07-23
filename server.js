@@ -155,7 +155,7 @@ apiRoutes.get('/clan/search/:name', function (req, res) {
     let name = req.params.name;
     let options = {
         method: 'GET',
-        url: config.apiUrl +'clan/search?name='+name,
+        url: config.apiUrl +'clan/search?name='+name+'&max=10',
         headers: {
             auth: config.auth
         }
