@@ -225,14 +225,13 @@ apiRoutes.get('/clan/warlog/:id/:page', function (req, res) {
 });
 
 // route to return top clans information (GET http://localhost:8080/api/clan/warlog/:id)
-apiRoutes.get('/clans/top/', function (req, res) {
-    //let region = req.params.region;
-    //let url = region ? 'top/clans/' + region : 'top/clans/';
-    console.log(config.apiUrl + 'top/clans');
+apiRoutes.get('/clans/top/:region', function (req, res) {
+    let region = req.params.region;
+    let url = region ? 'top/clans/' + region : 'top/clans/';
     
     let options = {
         method: 'GET',
-        url: config.apiUrl + 'top/clans?max=10',
+        url: config.apiUrl+url,
         headers: {
             auth: config.auth
         }
