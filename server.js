@@ -223,40 +223,6 @@ apiRoutes.get('/clan/warlog/:id/:page', function (req, res) {
         res.send(body);
     });
 });
-apiRoutes.get('/clans/top/', function (req, res) {
-
-    let options = {
-        method: 'GET',
-        url: config.apiUrl + 'top/clans',
-        headers: {
-            auth: config.auth
-        }
-    };
-
-    request(options, function (error, response, body) {
-        if (error) throw new Error(error);
-
-        res.send(body);
-    });
-});
-// route to return top clans information (GET http://localhost:8080/api/clan/warlog/:id)
-apiRoutes.get('/clans/top/:region', function (req, res) {
-    let region = req.params.region;
-    
-    let options = {
-        method: 'GET',
-        url: config.apiUrl + 'top/clans/' + region,
-        headers: {
-            auth: config.auth
-        }
-    };
-
-    request(options, function (error, response, body) {
-        if (error) throw new Error(error);
-
-        res.send(body);
-    });
-});
 
 // route to return player information (GET http://localhost:8080/api/player/:id)
 apiRoutes.get('/player/:id', function (req, res) {
@@ -300,6 +266,76 @@ apiRoutes.get('/player/:id/chests', function (req, res) {
     let options = {
         method: 'GET',
         url: config.apiUrl + 'player/' + id + '/chests',
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+
+apiRoutes.get('/clans/top/', function (req, res) {
+
+    let options = {
+        method: 'GET',
+        url: config.apiUrl + 'top/clans',
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+// route to return top clans information (GET http://localhost:8080/api/clan/warlog/:id)
+apiRoutes.get('/clans/top/:region', function (req, res) {
+    let region = req.params.region;
+
+    let options = {
+        method: 'GET',
+        url: config.apiUrl + 'top/clans/' + region,
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+
+apiRoutes.get('/players/top/', function (req, res) {
+
+    let options = {
+        method: 'GET',
+        url: config.apiUrl + 'top/players',
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+// route to return top clans information (GET http://localhost:8080/api/clan/warlog/:id)
+apiRoutes.get('/players/top/:region', function (req, res) {
+    let region = req.params.region;
+
+    let options = {
+        method: 'GET',
+        url: config.apiUrl + 'top/players/' + region,
         headers: {
             auth: config.auth
         }
