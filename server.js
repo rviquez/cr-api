@@ -137,7 +137,7 @@ apiRoutes.get('/clan/:id', function (req, res) {
     let id = req.params.id;
     let options = {
         method: 'GET',
-        url: config.apiUrl+'clan/'+id,
+        url: config.apiUrl + 'clan/' + id,
         headers: {
             auth: config.auth
         }
@@ -155,7 +155,7 @@ apiRoutes.get('/clan/search/:name', function (req, res) {
     let name = req.params.name;
     let options = {
         method: 'GET',
-        url: config.apiUrl +'clan/search?name='+name+'&max=10',
+        url: config.apiUrl + 'clan/search?name=' + name + '&max=10',
         headers: {
             auth: config.auth
         }
@@ -189,10 +189,10 @@ apiRoutes.get('/clan/battles/:id/', function (req, res) {
 // route to return clan war information (GET http://localhost:8080/api/clan/war/:id)
 apiRoutes.get('/clan/war/:id/:page', function (req, res) {
     let id = req.params.id;
-    let page = req.params.page ? req.params.page:1;
+    let page = req.params.page ? req.params.page : 1;
     let options = {
         method: 'GET',
-        url: config.apiUrl + 'clan/' + id + '/war?page='+page,
+        url: config.apiUrl + 'clan/' + id + '/war?page=' + page,
         headers: {
             auth: config.auth
         }
@@ -211,7 +211,28 @@ apiRoutes.get('/clan/warlog/:id/:page', function (req, res) {
     let page = req.params.page ? req.params.page : 1;
     let options = {
         method: 'GET',
-        url: config.apiUrl + 'clan/' + id + '/warlog?page='+page,
+        url: config.apiUrl + 'clan/' + id + '/warlog?page=' + page,
+        headers: {
+            auth: config.auth
+        }
+    };
+
+    request(options, function (error, response, body) {
+        if (error) throw new Error(error);
+
+        res.send(body);
+    });
+});
+
+// route to return top clans information (GET http://localhost:8080/api/clan/warlog/:id)
+apiRoutes.get('/clans/top/', function (req, res) {
+    //let region = req.params.region;
+    //let url = region ? 'top/clans/' + region : 'top/clans/';
+    console.log(config.apiUrl + 'top/clans');
+    
+    let options = {
+        method: 'GET',
+        url: config.apiUrl + 'top/clans?max=10',
         headers: {
             auth: config.auth
         }
@@ -229,7 +250,7 @@ apiRoutes.get('/player/:id', function (req, res) {
     let id = req.params.id;
     let options = {
         method: 'GET',
-        url: config.apiUrl +'player/' + id,
+        url: config.apiUrl + 'player/' + id,
         headers: {
             auth: config.auth
         }
@@ -247,7 +268,7 @@ apiRoutes.get('/player/:id/battles', function (req, res) {
     let id = req.params.id;
     let options = {
         method: 'GET',
-        url: config.apiUrl +'player/' + id + '/battles',
+        url: config.apiUrl + 'player/' + id + '/battles',
         headers: {
             auth: config.auth
         }
@@ -265,7 +286,7 @@ apiRoutes.get('/player/:id/chests', function (req, res) {
     let id = req.params.id;
     let options = {
         method: 'GET',
-        url: config.apiUrl +'player/' + id + '/chests',
+        url: config.apiUrl + 'player/' + id + '/chests',
         headers: {
             auth: config.auth
         }
